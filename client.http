@@ -1,0 +1,38 @@
+# Примеры REST API-запросов
+
+@baseURL = http://127.0.0.1:80
+
+# Создать объявление
+POST {{baseURL}}/advertisement
+Content-Type: application/json
+
+{
+"title": "iPhone 16 Pro",
+"description": "новый",
+"price": 215490.99,
+"owner": 1
+}
+
+###
+
+GET {{baseURL}}/advertisement/1
+Content-Type: application/json
+
+###
+
+GET {{baseURL}}/advertisement?title=iphone
+Content-Type: application/json
+
+###
+
+PATCH {{baseURL}}/advertisement/1
+Content-Type: application/json
+
+{
+"description": "б/у"
+}
+
+###
+
+DELETE {{baseURL}}/advertisement/1
+Content-Type: application/json
