@@ -49,7 +49,7 @@ async def search_items(session: AsyncSession, orm_class: ORM_CLS, field, value) 
         v = str(v).split('Mapped')[1].strip('[]')
         mapped_dict.setdefault(k, v)
     # Получаем тип данных по которому мы будем формировать условие
-    # для query-запроса к БД
+    # для query-выражения к БД
     type_field = mapped_dict[field]
     if type_field == 'int':
         condition = orm_class_field == int(value)
@@ -69,5 +69,5 @@ async def search_items(session: AsyncSession, orm_class: ORM_CLS, field, value) 
     query = await session.scalars(select(orm_class).where(condition))
     res_list = query.all()
     if not res_list:
-        return {'search_result': f'{value} not found in {field}'}
+        raise HTTPException(status_code=404, detail=f'{value} not found in {field}')
     return res_list

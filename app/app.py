@@ -29,7 +29,7 @@ async def get_advertisement_from_qs(
             raise HTTPException(status_code=400,
                                 detail='Too many parameters in query string')
     if len(qs_params) == 0:
-        raise HTTPException(status_code=404,
+        raise HTTPException(status_code=400,
                             detail="Invalid query parameters")
     field = list(qs_params.keys())[0]
     value = list(qs_params.values())[0]
